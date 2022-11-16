@@ -11,3 +11,6 @@ try {
 } catch (err) {
     console.log(`erro DB: ${err}`);
 }
+
+
+module.exports = sequelize;
