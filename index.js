@@ -4,6 +4,8 @@ const session = require('express-session');
 const Filestore = require('session-file-store')(session);
 const flash = require('express-flash');
 const conn = require('./db/conn');
+const Thought = require('./models/Thought');
+const User = require('./models/User');
 const port = 3000;
 const app = express();
 
