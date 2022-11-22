@@ -6,11 +6,14 @@ const flash = require('express-flash');
 const conn = require('./db/conn');
 const Thought = require('./models/Thought');
 const User = require('./models/User');
+const thougtRouter = require('./routes/thoughtRoutes');
+const ThoughtController = require('./controllers/ThoughtController');
 const port = 3000;
 const app = express();
 
-app.engine = ('handlebars', exphbs.engine());
+app.engine('handlebars', exphbs.engine());
 app.set('view engine', 'handlebars');
+
 app.use(
     express.urlencoded({
         extended: true
@@ -45,9 +48,13 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use('thoughts', thougtRouter);
+app.get('/', ThoughtController.showAll);
+
 conn
     .sync()
     .then(() => {
+        console.log(`ounvindo porta ${port}`);
         app.listen(port);
     })
     .catch((err) => {
