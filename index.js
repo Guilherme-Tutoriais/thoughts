@@ -7,6 +7,7 @@ const conn = require('./db/conn');
 const Thought = require('./models/Thought');
 const User = require('./models/User');
 const thougtRouter = require('./routes/thoughtRoutes');
+const authRouter = require('./routes/authRoutes');
 const ThoughtController = require('./controllers/ThoughtController');
 const port = 3000;
 const app = express();
@@ -48,7 +49,8 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('thoughts', thougtRouter);
+app.use('/thoughts', thougtRouter);
+app.use('/', authRouter);
 app.get('/', ThoughtController.showAll);
 
 conn
