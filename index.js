@@ -55,6 +55,7 @@ app.get('/', ThoughtController.showAll);
 
 conn
     .sync()
+    //.sync({ force: true }) // pra quando precisa mudar as tabelas
     .then(() => {
         console.log(`ounvindo porta ${port}`);
         app.listen(port);
