@@ -44,7 +44,7 @@ app.use(express.static('public'));
 
 app.use((req, res, next) => {
     if (req.session.userid) {
-        res.locals.sessions = req.session;
+        res.locals.session = req.session;
     }
     next();
 });
