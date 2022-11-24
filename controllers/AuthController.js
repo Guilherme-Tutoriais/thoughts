@@ -5,6 +5,10 @@ module.exports = class AuthController {
     static login(req, res) {
         res.render("auth/login");
     }
+    static logout(req, res) {
+        req.session.destroy();
+        res.redirect('/login');
+    }
     static register(req, res) {
         res.render("auth/register");
     }
