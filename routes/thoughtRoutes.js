@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 const ThoughtController = require('../controllers/ThoughtController');
 
-router.get('/dashboard', ThoughtController.dashboard);
+const checkAuth = require('../helpers/auth').checkAuth;
+
+router.get('/dashboard', checkAuth, ThoughtController.dashboard);
 router.get('/', ThoughtController.showAll);
 
 module.exports = router;
