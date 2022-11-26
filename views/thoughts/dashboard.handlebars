@@ -4,4 +4,21 @@
         <a href="/thoughts/add" class="btn">Criar Frase</a>
     </div>
     <h3>Suas Frases</h3>
+    <ul>
+        {{#each thougts}}
+        <li>
+            <span class="label">{{this.title}}</span>
+            <span class="actions">
+                <a href="/thoughts/edit/{{this.id}}" class="btn">Editar</a>
+                <form action="/thoughts/remove" method="POST">
+                    <input type="hidden" name="id" value={{this.id}}>
+                    <input type="submit" class="btn" value="Excluir">
+                </form>
+            </span>
+        </li>
+        {{/each}}
+    </ul>
+    {{#if emptyThoughts}}
+    <p>Ainda sem frase nenhuma, comece por <a href="/thoughts/add">aqui!</a></p>
+    {{/if}}
 </div>
